@@ -1,7 +1,7 @@
 {
   "name": "@digimuza/pdf-components",
   "description": "PDF components",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "publishConfig": {
@@ -49,6 +49,7 @@
   "author": "digimuza",
   "license": "MIT",
   "devDependencies": {
+    "@digimuza/nscript": "^0.1.1",
     "@types/jest": "^27.5.1",
     "@types/node": "^13.13.5",
     "git-conventional-commits": "^1.2.0",

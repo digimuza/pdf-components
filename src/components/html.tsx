@@ -10,14 +10,21 @@ export function getPageDimensions(format: Format, landscape: boolean) {
 		A6: [105, 148],
 	}
 
-	if (P.isArray(format)) {
-		return flipDimensions(format, landscape)
+	if (P.isObject(format)) {
+		return flipDimensions([format.width, format.height], landscape)
 	}
 
 	return flipDimensions(dimensions[format], landscape)
 }
 
 export function HtmlDoc(props: { pages: Content[] }) {
+	const server = !!process.env.LIVE_SERVER
+	const docStyle = server
+		? {
+				border: '1px solid #000',
+				margin: 10,
+		  }
+		: {}
 	return (
 		<html>
 			<head>
@@ -29,9 +36,8 @@ export function HtmlDoc(props: { pages: Content[] }) {
 					return (
 						<div
 							style={{
-								border: '1px solid #000',
-								margin: 10,
-								...dimensions,
+								...docStyle,
+								...(server ? dimensions : {}),
 							}}
 							dangerouslySetInnerHTML={{
 								__html: content,
