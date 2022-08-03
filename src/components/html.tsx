@@ -17,7 +17,13 @@ export function getPageDimensions(format: Format, landscape: boolean) {
 	return flipDimensions(dimensions[format], landscape)
 }
 
-export function HtmlDoc(props: { pages: Content[] }) {
+export function HtmlDoc(props: {
+	pages: {
+		content: string
+		format: Format
+		landscape?: boolean
+	}[]
+}) {
 	const server = !!process.env.LIVE_SERVER
 	const docStyle = server
 		? {
