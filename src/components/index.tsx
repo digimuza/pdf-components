@@ -2,6 +2,7 @@ import * as P from 'ts-prime'
 import { JSX } from 'preact'
 import renderToString from 'preact-render-to-string'
 import { HtmlDoc } from './html'
+import { generatePdfBase } from '../generatePDFContent'
 
 export type Format = 'A3' | 'A4' | 'A5' | 'A6' | { height: number; width: number }
 export interface Content {
@@ -36,5 +37,10 @@ export function page(data: Content) {
 				  ),
 		}
 	}
-	return data
+	return generatePdfBase([
+		{
+			...data,
+			content: data.content as string,
+		},
+	])
 }
